@@ -1,8 +1,0 @@
-services:
-  ubuntu: 
-    image: codealfa/wine-ubuntu22.04:1.1
-    environment: 
-      DISPLAY: :0
-    volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix:ro
-    command: wine "/root/.wine/drive_c/Program Files/Just Great Software/RegexBuddy 4/RegexBuddy4.exe"
