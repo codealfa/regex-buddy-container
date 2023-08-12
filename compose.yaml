@@ -3,7 +3,7 @@ services:
     image: codealfa/wine-ubuntu22.04:1.1
     network_mode: "host"  
     environment: 
-      DISPLAY: :0
+      DISPLAY: ${DISPLAY}
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
     command: wine "/root/.wine/drive_c/Program Files/Just Great Software/RegexBuddy 4/RegexBuddy4.exe"
