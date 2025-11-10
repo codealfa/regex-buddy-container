@@ -1,9 +1,30 @@
 services:
-  ubuntu: 
-    image: codealfa/wine-ubuntu22.04:1.1
-    network_mode: "host"  
-    environment: 
-      DISPLAY: ${DISPLAY}
+  regexbuddy:
+    build:
+      context: .
+    network_mode: host
+    # Run as your user at runtime (for clean file perms)
+    user: "${MY_UID:-1000}:${MY_GID:-1000}"
+
+    environment:
+      - DISPLAY=${DISPLAY}
+      - XAUTHORITY=/tmp/.Xauthority
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
+      - PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native
+      - WINEPREFIX=/data/.wine
+      - WINEARCH=win64
+      # Optional: force 32-bit prefix if you really want Program Files (no x86)
+      # - WINEARCH=win32
+      # Optional: override EXE path explicitly
+      # - APP_EXE=C:\Program Files (x86)\Just Great Software\RegexBuddy 4\RegexBuddy4.exe
+
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
-    command: wine "/root/.wine/drive_c/Program Files/Just Great Software/RegexBuddy 4/RegexBuddy4.exe"
+      - ${HOME}/.Xauthority:/tmp/.Xauthority:ro
+      - ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native
+      - appdata:/data
+      - ./installers:/opt/installer:ro  # drop in new installers without rebuild
+
+volumes:
+  appdata:
+    
