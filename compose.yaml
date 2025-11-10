@@ -3,8 +3,6 @@ services:
     build:
       context: .
     network_mode: host
-    # Run as your user at runtime (for clean file perms)
-    user: "${MY_UID:-1000}:${MY_GID:-1000}"
 
     environment:
       - DISPLAY=${DISPLAY}
@@ -17,6 +15,8 @@ services:
       # - WINEARCH=win32
       # Optional: override EXE path explicitly
       # - APP_EXE=C:\Program Files (x86)\Just Great Software\RegexBuddy 4\RegexBuddy4.exe
+      - MY_UID=${MY_UID:-1000}
+      - MY_GID=${MY_GID:-1000}
 
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
@@ -27,4 +27,4 @@ services:
 
 volumes:
   appdata:
-    
+    name: regexbuddy-data 
