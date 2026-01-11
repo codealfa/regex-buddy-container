@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=RegexBuddy (Docker)
+Comment=Run RegexBuddy via Wine in Docker
+Exec=gnome-terminal --bash -lc '/path/to/regex-buddy-container/run-regexbuddy.sh'
+Icon=wine
+Terminal=false
+Categories=Development;Utility;
+StartupNotify=true
