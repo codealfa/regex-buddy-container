@@ -198,9 +198,9 @@ When launched, it:
   - `MY_UID`
   - `MY_GID`
 - Grants safe X11 access using:
-  \`\`\`
+  ```
   xhost +SI:localuser:$USER
-  \`\`\`
+  ```
 - Runs `docker compose up` from the project directory in the foreground, showing logs in a terminal window
 
 ---
@@ -209,9 +209,9 @@ When launched, it:
 
 Copy the template launcher to your local applications directory:
 
-\`\`\`
+```
 cp regexbuddy-docker.desktop.dist ~/.local/share/applications/regexbuddy-docker.desktop
-\`\`\`
+```
 
 ---
 
@@ -219,27 +219,27 @@ cp regexbuddy-docker.desktop.dist ~/.local/share/applications/regexbuddy-docker.
 
 Open the copied launcher file:
 
-\`\`\`
+```
 nano ~/.local/share/applications/regexbuddy-docker.desktop
-\`\`\`
+```
 
 Update the `Exec=` line to point to your local checkout **and explicitly launch a terminal emulator** (recommended for GNOME):
 
-\`\`\`
+```
 Exec=gnome-terminal -- bash -lc '/absolute/path/to/regex-buddy-container/run-regexbuddy.sh'
-\`\`\`
+```
 
 Example:
 
-\`\`\`
+```
 Exec=gnome-terminal -- bash -lc '/home/jchoptim/regex-buddy-container/run-regexbuddy.sh'
-\`\`\`
+```
 
 Make sure the launcher also contains:
 
-\`\`\`
+```
 Terminal=false
-\`\`\`
+```
 
 > **Why this is needed**  
 > On GNOME, `Terminal=true` is unreliable for GUI applications. Explicitly launching `gnome-terminal` guarantees a visible logs window.
@@ -248,9 +248,9 @@ Terminal=false
 
 ### 3️⃣ Ensure the launch script is executable
 
-\`\`\`
+```
 chmod +x run-regexbuddy.sh
-\`\`\`
+```
 
 ---
 
@@ -272,10 +272,10 @@ If the terminal is still open, simply close it.
 
 Otherwise, you can stop everything manually with:
 
-\`\`\`
+```
 cd /path/to/regex-buddy-container
 docker compose down
-\`\`\`
+```
 
 ---
 
